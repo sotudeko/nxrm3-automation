@@ -1,0 +1,6 @@
+---
+- include: declare_script_each.yml
+  with_items:
+    - setup_role
+    - create_repo_maven_hosted
+    

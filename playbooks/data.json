@@ -1,0 +1,10 @@
+{
+"maven2.groupId": "org.test",
+"maven2.artifactId": "webwolf",
+"maven2.version": "1.2",
+"maven2.asset1": "@/Users/sotudeko/Development/scan-artifacts/java/webwolf-8.0.0.M21.jar",
+"maven2.asset1.extension": "jar",
+"maven2.generate-pom": "true"
+}
+
+

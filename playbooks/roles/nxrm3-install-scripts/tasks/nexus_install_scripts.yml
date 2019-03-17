@@ -1,0 +1,34 @@
+---
+- include: declare_script_each.yml
+  with_items:
+    - setup_capability
+    - setup_role
+    - setup_privilege
+    - setup_user
+    - delete_repo
+    - delete_blobstore
+    - create_blobstore
+    - create_repo_maven_proxy
+    - create_repo_maven_group
+    - create_repo_maven_hosted
+    - create_repo_docker_hosted
+    - create_repo_docker_proxy
+    - create_repo_docker_group
+    - create_repo_pypi_hosted
+    - create_repo_pypi_proxy
+    - create_repo_pypi_group
+    - create_repo_raw_hosted
+    - create_repo_raw_proxy
+    - create_repo_raw_group
+    - create_repo_rubygems_hosted
+    - create_repo_rubygems_proxy
+    - create_repo_rubygems_group
+    - create_repo_bower_hosted
+    - create_repo_bower_proxy
+    - create_repo_bower_group
+    - create_repo_npm_hosted
+    - create_repo_npm_proxy
+    - create_repo_npm_group
+    - create_repo_gitlfs_hosted
+    - create_task
+    
