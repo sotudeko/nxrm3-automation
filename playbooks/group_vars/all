@@ -1,0 +1,13 @@
+---
+
+repo_instances:
+  - name: be
+    host: localhost
+    port: 8081
+    user: admin
+    passwd: admin123
+  - name: us
+    host: localhost
+    port: 8081
+    user: admin
+    passwd: admin123
