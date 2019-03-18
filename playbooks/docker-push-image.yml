@@ -4,12 +4,8 @@
     version: 1.2
   tasks:
     - name: Push image to local registry
-      docker_image:
-        name: "{{ image_name }}"
-        repository: "{{ item.registry }}"
-        tag: "{{ version }}"
-      with_items:
-        - { registry: 'sola.local:18082' }
+      shell: /usr/local/bin/docker push "{{ item }}/{{ image_name }}:{{ version }}"
+      with_items: "{{ docker_registries }}"
       register: op
 
     - debug:
