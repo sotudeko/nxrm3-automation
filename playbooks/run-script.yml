@@ -1,21 +1,21 @@
 - hosts: localhost
-  vars:
-    repository: mvn-releases
-    group: org.test
-    artifact: webwolf
-    version: 1.7
-    nexus_repos_maven_hosted:
-      - name: staging-prod
-        version_policy: mixed
-        write_policy: allow
-        blob_store: default
-    nexus_roles:
-      - id: Developpers # can map to a LDAP group id, also used as a key to update a role
-        name: developers
-        description: All developers
-        privileges:
-          - nx-search-read
-          - nx-audit-all
-        roles: []
+  # vars:
+  #   repository: mvn-releases
+  #   group: org.test
+  #   artifact: webwolf
+  #   version: 1.7
+  #   nexus_repos_maven_hosted:
+  #     - name: staging-prod
+  #       version_policy: mixed
+  #       write_policy: allow
+  #       blob_store: default
+  #   nexus_roles:
+  #     - id: Developper 
+  #       name: developer
+  #       description: All developers
+  #       privileges:
+  #         - nx-search-read
+  #         - nx-audit-all
+  #       roles: []
   roles:
     - nxrm3-run-script

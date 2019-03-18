@@ -30,4 +30,19 @@ _nexus_repos_maven_defaults:
   version_policy: release # release, snapshot or mixed
   layout_policy: strict # strict or permissive
   write_policy: allow_once # allow_once or allow
+
+nexus_repos_maven_hosted:
+  - name: staging-prod
+    version_policy: mixed
+    write_policy: allow
+    blob_store: default
+
+nexus_roles:
+  - id: "{{ nxrm3_role_id }}"  
+    name: "{{ nxrm3_role_name }}"
+    description: New role
+    privileges:
+      - nx-search-read
+      - nx-audit-all
+    roles: []
   
