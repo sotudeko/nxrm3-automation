@@ -1,9 +1,4 @@
 - hosts: controller
-  vars:
-    repository: mvn-releases
-    group: org.test
-    artifact: webwolf
-    version: 1.7
   tasks:
     - name: Upload component to Nexus Repository
       shell: curl -v -u "{{ item.user }}":"{{ item.passwd }}" \
@@ -11,8 +6,8 @@
              -F maven2.groupId="{{ group }}" \
              -F maven2.artifactId="{{ artifact }}" \
              -F maven2.version="{{ version }}" \
-             -F maven2.asset1=@/Users/sotudeko/Development/scan-artifacts/java/webwolf-8.0.0.M21.jar \
-             -F maven2.asset1.extension=jar \
+             -F maven2.asset1=@"{{ artifact_path }}" \
+             -F maven2.asset1.extension="{{ extension }}" \
              -F maven2.generate-pom=true
       with_items: "{{ repo_instances }}"
       register: op
