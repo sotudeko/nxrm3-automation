@@ -1,7 +1,7 @@
 - hosts: localhost
   vars:
-    image_name: local-jenkins
-    version: 1.67
+    image_name: howdy
+    version: 1.1
   tasks:
     - name: Push image to local registry
       docker_image:
@@ -11,7 +11,7 @@
         push: yes
         pull: no
       with_items:
-        - { registry: 'sola.localhost:18082' }
+        - { registry: 'sola.local:18082' }
       register: op
 
     - debug:
