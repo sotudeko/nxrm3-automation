@@ -1,5 +1,5 @@
 ---
 - include: call_script.yml
   vars:
-    script_name: setup_user
+    script_name: create_user
     args: "{{ item }}"

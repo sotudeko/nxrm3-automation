@@ -1,6 +1,0 @@
----
-# - include: create_repo_maven_hosted_each.yml
-#   with_items: "{{ nexus_repos_maven_hosted }}"
-
-- include: setup_role_each.yml
-  with_items: "{{ nexus_roles }}"
