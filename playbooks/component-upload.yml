@@ -2,16 +2,19 @@
   tasks:
     - name: Upload component to Nexus Repository
       shell: curl -v -u "{{ item.user }}":"{{ item.passwd }}" \
-             -X POST "http://{{ item.host }}:{{ item.port }}/service/rest/v1/components?repository={{ repository }}" \
+             -X POST "{{ item.host }}:{{ item.port }}/service/rest/v1/components?repository={{ repository }}" \
              -F maven2.groupId="{{ group }}" \
              -F maven2.artifactId="{{ artifact }}" \
              -F maven2.version="{{ version }}" \
              -F maven2.asset1=@"{{ artifact_path }}" \
              -F maven2.asset1.extension="{{ extension }}" \
              -F maven2.generate-pom=true
-      with_items: "{{ repo_instances }}"
-      register: op
+      # with_items: "{{ nxrm3_instances }}"
+      loop:
+        - { user: admin, passwd: admin123, host: http://localhost, port: 8081}
+        - { user: admin, passwd: admin123, host: http://localhost, port: 8082}
+    #   register: op
 
-    - debug:
-        var: op
+    # - debug:
+    #     var: op
 

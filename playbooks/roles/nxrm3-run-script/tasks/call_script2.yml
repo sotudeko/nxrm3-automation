@@ -1,9 +1,9 @@
 ---
 - name: Calling Groovy script {{ script_name }}
   uri:
-    url: "{{ nxrm3_host }}:{{ nxrm3_port }}/service/rest/v1/script/{{ script_name }}/run"
-    user: "{{ nxrm3_user }}"
-    password: "{{ nxrm3_pwd }}"
+    url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}service/rest/v1/script/{{ script_name }}/run"
+    user: 'admin'
+    password: "{{ current_nexus_admin_password }}"
     headers:
       Content-Type: "text/plain"
     method: POST

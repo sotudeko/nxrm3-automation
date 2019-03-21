@@ -1,12 +1,7 @@
 ---
 nexus_admin_password: 'admin123' 
-current_nexus_admin_password: 'admin123' 
 
-# Nexus default properties
-nexus_default_port: 8081
-nexus_default_context_path: '/'
-
-nexus_blob_names:           # Splited blob name list @ blob_vars.yml
+nexus_blob_names:     
   pypi:
     blob: 'default'
   raw:

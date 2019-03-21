@@ -3,3 +3,24 @@
   vars:
     script_name: create_role
     args: "{{ item }}"
+    nxrm3_host: 'http://localhost'
+    nxrm3_port: '8081'
+    nxrm3_user: 'admin'
+    nxrm3_pwd: 'admin123'
+
+- include: call_script.yml
+  vars:
+    script_name: create_role
+    args: "{{ item }}"
+    nxrm3_host: 'http://localhost'
+    nxrm3_port: '8082'
+    nxrm3_user: 'admin'
+    nxrm3_pwd: 'admin123'
+
+# - include: call_script.yml
+#   vars:
+#     script_name: create_role
+#     args: "{{ nexus_roles }}"
+#   loop: 
+#      - { hostname: 'http://localhost', port: 8081, username: 'admin', passwd: 'admin123'}
+#      - { hostname: 'http://localhost', port: 8081, username: 'admin', passwd: 'admin123'}
