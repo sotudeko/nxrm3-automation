@@ -13,5 +13,5 @@ nxrm3_instances:
 
 docker_registries:
   - sola.local:18082
-  - sola.local:18083
+  - sola.local:18086
  
