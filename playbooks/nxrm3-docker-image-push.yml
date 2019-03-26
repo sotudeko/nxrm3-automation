@@ -5,7 +5,7 @@
     image_name: hello-world
   tasks:
     - name: Buuld and tag docker image
-      shell: chdir="{{ workdir }}"  /usr/local/bin/docker build -t "{{ item }}/{{ image_name }}:{{ version }}" .
+      command: chdir="{{ workdir }}"  /usr/local/bin/docker build -t "{{ item }}/{{ image_name }}:{{ version }}" .
       with_items: "{{ docker_registries }}"
       register: op
 
@@ -13,7 +13,7 @@
         var: op
 
     - name: Push image to local registry
-      shell: chdir="{{ workdir }}"  /usr/local/bin/docker push "{{ item }}/{{ image_name }}:{{ version }}"
+      command: chdir="{{ workdir }}"  /usr/local/bin/docker push "{{ item }}/{{ image_name }}:{{ version }}"
       with_items: "{{ docker_registries }}"
       register: op
 
