@@ -1,5 +1,5 @@
 - hosts: controller
   tasks:
     - include_role:
-        name: nxrm3-run-script
+        name: nxrm3-script-run
       

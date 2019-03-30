@@ -1,6 +1,6 @@
 ---
 - include: create_role.yml
-  with_items: "{{ nexus_roles }}"
+  with_items: "{{ nxrm3_role }}"
   when: script_name == 'create_role'
 
 # - include: create_privilege.yml
