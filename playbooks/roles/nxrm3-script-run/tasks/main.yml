@@ -3,6 +3,10 @@
   with_items: "{{ nxrm3_role }}"
   when: script_name == 'create_role'
 
+- include: create_content_selector.yml
+  with_items: "{{ nxrm3_content_selector }}"
+  when: script_name == 'create_content_selector'
+
 # - include: create_privilege.yml
 #   with_items: "{{ nexus_privileges }}"
 

@@ -47,4 +47,10 @@ nxrm3_role:
     description: New role
     privileges: "{{ nxrm3_privileges }}"
     roles: "{{ nxrm3_roles }}"
+
+nxrm3_content_selector: 
+  - name: "{{ nxrm3_cs_name }}"
+    description: 'Create new NXRM3 content selector'
+    attributes: 
+      - coordinate.groupId =^ "com.mycompany"
   
