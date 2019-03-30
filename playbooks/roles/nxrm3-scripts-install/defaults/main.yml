@@ -1,5 +1,5 @@
 ---
-current_nexus_admin_password: 'admin123' 
+nexus_admin_password: 'admin123' 
 nexus_default_port: 8081
 nexus_default_context_path: '/'
 

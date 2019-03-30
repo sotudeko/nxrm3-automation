@@ -12,7 +12,7 @@
   uri:
     url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}service/rest/v1/script"
     user: 'admin'
-    password: "{{ current_nexus_admin_password }}"
+    password: "{{ nexus_admin_password }}"
     body_format: json
     method: POST
     force_basic_auth: yes
@@ -21,4 +21,5 @@
       name: "{{ item }}"
       type: 'groovy'
       content: "{{ lookup('file', 'groovy/' + item + '.groovy') }}"
+  ignore_errors: true
 

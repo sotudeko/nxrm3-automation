@@ -45,8 +45,7 @@ nxrm3_role:
   - id: "{{ nxrm3_role_id }}"  
     name: "{{ nxrm3_role_name }}"
     description: New role
-    privileges:
-      - nx-search-read
-      - nx-audit-all
-    roles: []
+    privileges: "{{ nxrm3_privileges }}"
+    roles:
+      - nx-admin
   
