@@ -46,6 +46,5 @@ nxrm3_role:
     name: "{{ nxrm3_role_name }}"
     description: New role
     privileges: "{{ nxrm3_privileges }}"
-    roles:
-      - nx-admin
+    roles: "{{ nxrm3_roles }}"
   
