@@ -11,9 +11,9 @@
              -F maven2.generate-pom=true
       args:
         warn: false
-      loop:
-        - { user: admin, passwd: admin123, host: 'http://localhost', port: 8081}
-        - { user: admin, passwd: admin123, host: 'http://localhost', port: 8082}
+      loop: "{{ nxrm3_instances }}"
+        # - { user: admin, passwd: admin123, host: 'http://localhost', port: 8081}
+        # - { user: admin, passwd: admin123, host: 'http://localhost', port: 8082}
 
     #   register: op
 
