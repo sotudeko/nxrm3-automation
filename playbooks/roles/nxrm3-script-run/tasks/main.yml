@@ -7,11 +7,9 @@
   with_items: "{{ nxrm3_content_selector }}"
   when: script_name == 'create_content_selector'
 
-- include: call_script.yml
-  vars:
-    script_name: list_roles
-    args: ""
-  when: script_name == 'list_roles'
+- include: list_metadata.yml
+  when: script_name == 'list_roles' or
+        script_name == 'list_privileges'
   
 # - include: create_privilege.yml
 #   with_items: "{{ nexus_privileges }}"

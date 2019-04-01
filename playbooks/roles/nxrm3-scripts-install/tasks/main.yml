@@ -33,3 +33,5 @@
     - create_task
     - create_content_selector
     - list_roles
+    - list_privileges
+    
