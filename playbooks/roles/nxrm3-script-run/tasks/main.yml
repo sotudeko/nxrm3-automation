@@ -9,7 +9,9 @@
 
 - include: list_metadata.yml
   when: script_name == 'list_roles' or
-        script_name == 'list_privileges'
+        script_name == 'list_privileges' or
+        script_name == 'list_content_selectors'
+
   
 # - include: create_privilege.yml
 #   with_items: "{{ nexus_privileges }}"

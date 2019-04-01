@@ -19,7 +19,7 @@ Map<String, String> currentResult = [id: parsed_args.id, name: parsed_args.name,
 try {
     def selectorConfig = new SelectorConfiguration(
             name: parsed_args.name,
-            type: 'jexl',
+            type: 'CSEL',
             description: parsed_args.description,
             attributes: ['expression': parsed_args.expression]
     )

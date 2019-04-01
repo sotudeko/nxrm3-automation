@@ -34,4 +34,5 @@
     - create_content_selector
     - list_roles
     - list_privileges
-    
+    - list_content_selectors
+
