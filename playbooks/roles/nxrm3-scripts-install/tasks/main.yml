@@ -32,3 +32,4 @@
     - create_repo_gitlfs_hosted
     - create_task
     - create_content_selector
+    - list_roles

@@ -13,3 +13,8 @@
   loop: "{{ nxrm3_instances }}"
   loop_control:
      loop_var: nxrm3_item
+  register: op
+
+- debug:
+    var: op
+

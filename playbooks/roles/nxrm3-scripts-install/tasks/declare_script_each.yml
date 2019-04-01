@@ -13,9 +13,6 @@
     url: "{{ nxrm3_item.host }}:{{ nxrm3_item.port }}/service/rest/v1/script"
     user: "{{ nxrm3_item.user }}"
     password: "{{ nxrm3_item.passwd }}"
-    # url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}service/rest/v1/script"
-    # user: 'admin'
-    # password: "{{ nexus_admin_password }}"
     body_format: json
     method: POST
     force_basic_auth: yes
