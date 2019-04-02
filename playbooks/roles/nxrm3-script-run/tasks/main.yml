@@ -7,18 +7,15 @@
   with_items: "{{ nxrm3_content_selector }}"
   when: script_name == 'create_content_selector'
 
+- include: create_privilege_repository.yml
+  with_items: "{{ nxrm3_privilege_repository }}"
+  when: script_name == 'create_privilege_repository'
+
 - include: list_metadata.yml
   when: script_name == 'list_roles' or
         script_name == 'list_privileges' or
         script_name == 'list_content_selectors'
-
   
-# - include: create_privilege.yml
-#   with_items: "{{ nexus_privileges }}"
-
-# - include: create_role.yml
-#   with_items: "{{ nexus_roles }}"
-
 # - include: create_user.yml
 #   with_items: "{{ nexus_local_users }}"
 

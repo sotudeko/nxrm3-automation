@@ -1,50 +1,19 @@
 ---
 nexus_admin_password: 'admin123' 
 
-nexus_blob_names:     
-  pypi:
-    blob: 'default'
-  raw:
-    blob: 'default'
-  docker:
-    blob: 'default'
-  ruby:
-    blob: 'default'
-  bower:
-    blob: 'default'
-  npm:
-    blob: 'default'
-  mvn:
-    blob: 'default'
-  gitlfs:
-    blob: 'default'
-
-_nexus_repos_maven_defaults:
-  blob_store: "{{ nexus_blob_names.mvn.blob }}"
-  strict_content_validation: true
-  version_policy: release # release, snapshot or mixed
-  layout_policy: strict # strict or permissive
-  write_policy: allow_once # allow_once or allow
-
-nexus_repos_maven_hosted:
-  - name: staging-prod
-    version_policy: mixed
-    write_policy: allow
-    blob_store: default
-
-nexus_roles:
-  - id: "{{ nxrm3_role_id }}"  
-    name: "{{ nxrm3_role_name }}"
-    description: New role
-    privileges:
-      - nx-search-read
-      - nx-audit-all
-    roles: []
-  
+nxrm3_privilege_repository:
+  - name: "{{ nxrm3_privilege_name }}"  
+    description: "{{ nxrm3_privilege_description }}"
+    type: "{{ nxrm3_privilege_type }}"
+    format: "{{ nxrm3_format }}" 
+    content_selector: "{{ nxrm3_privilege_content_selector }}" 
+    repository: "{{ nxrm3_repository }}" 
+    actions: "{{ nxrm3_actions }}"
+       
 nxrm3_role:
   - id: "{{ nxrm3_role_id }}"  
     name: "{{ nxrm3_role_name }}"
-    description: New role
+    description: "{{ nxrm3_role_description }}"
     privileges: "{{ nxrm3_privileges }}"
     roles: "{{ nxrm3_roles }}"
 

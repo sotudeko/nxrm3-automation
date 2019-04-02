@@ -3,7 +3,7 @@
   with_items:
     - create_capability
     - create_role
-    - create_privilege
+    - create_privilege_repository
     - create_user
     - delete_repo
     - delete_blobstore

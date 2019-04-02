@@ -26,7 +26,8 @@ privilege.setType(parsed_args.type)
 privilege.setProperties([
         'format': parsed_args.format,
         'repository': parsed_args.repository,
-        'actions': parsed_args.actions.join(',')
+        // 'actions': parsed_args.actions.join(',')
+        'actions': parsed_args.actions // comma-separated
 ] as Map<String, String>)
 
 if (update) {
@@ -34,3 +35,5 @@ if (update) {
 } else {
     authManager.addPrivilege(privilege)
 }
+
+
