@@ -1,11 +1,17 @@
 import groovy.json.JsonSlurper
+import groovy.json.JsonOutput;
 
 class NXRM3Components {
 
    static void main(String[] args) {
 
+      def dockerRepoConnector    
       def repositoryUrl = args[0]
       def repositoryName = args[1]
+
+      if (args.length > 2){
+         dockerRepoConnector = args[2]
+      }
 
       def endpoint = repositoryUrl + '/service/rest/v1/components'
       def query = '?repository=' + repositoryName
@@ -28,10 +34,12 @@ class NXRM3Components {
 
             jsonObject.items.each { 
 
-               print it.id 
-
-               if (it.format == 'maven2'){
-                  println ' (' + it.group + '.' + it.name + ':' + it.version + ')'
+               switch(it.format){
+                  case 'maven2': printMaven(it); break
+                  case 'npm': printNpm(it); break
+                  case 'nuget': printList(it); break
+                  case 'docker': printDocker(it, dockerRepoConnector); break
+                  default: break
                }
 
                numberOfComponents++
@@ -45,8 +53,48 @@ class NXRM3Components {
          }
       }
 
-      println 'Number of components: ' + numberOfComponents
+      // println 'Number of components: ' + numberOfComponents
    }
+
+   static def printRaw(it){
+      def pretty = JsonOutput.toJson(it)
+      println pretty
+   }
+
+   static printList(it){
+
+      def listing
+
+      if (it.format == 'maven2'){
+         listing = it.id + ' (' + it.group + '.' + it.name + ':' + it.version + ')'
+      }
+      else {
+         listing = it.id + ' (' + it.name + ':' + it.version + ')'
+      }
+
+      println listing
+      println ' - Assets'
+      for (asset in it.assets){
+         println '  -- ' + asset.id + ' ' + asset.downloadUrl
+      }
+   }
+
+   static def printMaven(it){
+      println '  <dependency>' 
+      println '    <groupId>' + it.group + '</group>'
+      println '    <artifactId>' + it.name + '</artifactId>'
+      println '    <version>' + it.version + '</version>'
+      println '  </dependency>'
+   }
+
+   static def printNpm(it){
+      println '  "' + it.name + '" : "' + it.version + '"'
+   }
+
+   static def printDocker(it, dockerRepoConnector){
+      println dockerRepoConnector + '/' + it.name + ':' + it.version 
+   }
+
 }
 
 

@@ -1,0 +1,10 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.manager</groupId>
+  <artifactId>maven-component-download</artifactId>
+  <version>0.0.1</version>
+  <dependencies>
+
+    
+  </dependencies>
+</project>

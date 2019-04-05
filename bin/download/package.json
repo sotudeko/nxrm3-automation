@@ -1,0 +1,8 @@
+{
+  "name": "npm-component-download",
+  "version": "0.0.1",
+  "description": "Download component",
+  "dependencies": {
+    "storage": "1.7.0"
+  }
+}
