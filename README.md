@@ -1,4 +1,4 @@
-# nxrm3-automation
-Nexus Repository 3 API automation with Ansible
+# nxrm3-scripts
+
+Nexus Repository 3 API automation scripts
 	
-Based on https://github.com/savoirfairelinux/ansible-nexus3-oss
