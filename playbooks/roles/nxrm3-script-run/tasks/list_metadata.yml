@@ -1,5 +1,0 @@
----
-- include: call_script.yml
-  vars:
-    script_name: "{{ script_name }}"
-    args: ""

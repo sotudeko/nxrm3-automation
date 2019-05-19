@@ -8,6 +8,7 @@ class NXRM3Components {
       def dockerRepoConnector    
       def repositoryUrl = args[0]
       def repositoryName = args[1]
+      def outputFormat = args[2]
 
       if (args.length > 2){
          dockerRepoConnector = args[2]
@@ -24,7 +25,9 @@ class NXRM3Components {
 
          def url = new URL(repoAddress)
          def connection = url.openConnection()
+
          connection.requestMethod = 'GET'
+         connection.setRequestProperty("Authorization", "Basic YWRtaW46YWRtaW4xMjM=")
 
          if (connection.responseCode == 200) {
             def content = connection.content.text
@@ -34,13 +37,20 @@ class NXRM3Components {
 
             jsonObject.items.each { 
 
-               switch(it.format){
-                  case 'maven2': printMaven(it); break
-                  case 'npm': printNpm(it); break
-                  case 'nuget': printList(it); break
-                  case 'docker': printDocker(it, dockerRepoConnector); break
+               switch(outputFormat) {
+                  case 'listIds': printIds(it); break
+                  case 'listAssets': printAssets(it); break
+                  case 'raw': printRaw(it); break
                   default: break
                }
+
+               // switch(it.format){
+               //    case 'maven2': printList(it); break
+               //    case 'npm': printNpm(it); break
+               //    case 'nuget': printList(it); break
+               //    case 'docker': printDocker(it, dockerRepoConnector); break
+               //    default: break
+               // }
 
                numberOfComponents++
             }
@@ -53,30 +63,36 @@ class NXRM3Components {
          }
       }
 
-      // println 'Number of components: ' + numberOfComponents
+      println  repositoryName + ' (' + repositoryUrl + ') - number of components: ' + numberOfComponents
+   }
+
+   static printIds(it){
+
+      def listing
+
+      if (it.format == 'maven2'){
+         listing = it.group + '.' + it.name + ':' + it.version + ' (' + it.id + ')'
+      }
+      else {
+         listing = it.name + ':' + it.version + ' (' + it.id + ')'
+      }
+
+      println listing
+   }
+
+   static printAssets(it){
+      
+      printIds(it)
+
+      println ' - Assets'
+      for (asset in it.assets){
+         println '  -- ' + asset.downloadUrl // + ' (' + asset.id + ')'
+      }
    }
 
    static def printRaw(it){
       def pretty = JsonOutput.toJson(it)
       println pretty
-   }
-
-   static printList(it){
-
-      def listing
-
-      if (it.format == 'maven2'){
-         listing = it.id + ' (' + it.group + '.' + it.name + ':' + it.version + ')'
-      }
-      else {
-         listing = it.id + ' (' + it.name + ':' + it.version + ')'
-      }
-
-      println listing
-      println ' - Assets'
-      for (asset in it.assets){
-         println '  -- ' + asset.id + ' ' + asset.downloadUrl
-      }
    }
 
    static def printMaven(it){

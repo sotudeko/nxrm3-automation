@@ -1,0 +1,16 @@
+{
+  "name": "nxrm3-listener",
+  "version": "1.0.0",
+  "description": "Listen out for events from NXRM3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "child_process": "^1.0.2",
+    "express": "^4.16.4"
+  }
+}
