@@ -38,8 +38,8 @@ class NXRM3Components {
             jsonObject.items.each { 
 
                switch(outputFormat) {
-                  case 'listIds': printIds(it); break
-                  case 'listAssets': printAssets(it); break
+                  case 'list-ids': printIds(it); break
+                  case 'list-assets': printAssets(it); break
                   case 'raw': printRaw(it); break
                   default: break
                }
