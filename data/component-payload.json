@@ -1,0 +1,15 @@
+{
+   "timestamp":"2016-11-14T19:32:13.515+0000",
+   "nodeId":"7FFA7361-6ED33978-36997BD4-47095CC4-331356BE",
+   "initiator":"admin/127.0.0.1",
+   "repositoryName":"mvn-releases",
+   "action":"CREATED",
+   "component":{
+      "id":"bXZuLXJlbGVhc2VzOjNmNWNhZTAxNzYwMjMzYjYzMjcxZmU3YzZjOTU2MDVi",
+      "format":"maven2",
+      "name":"WebGoat",
+      "group":"WebGoat",
+      "version":"5.8.4"
+   }
+}
+

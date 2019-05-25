@@ -1,0 +1,22 @@
+- hosts: localhost
+  vars:
+    workdir: /var/tmp/docker-build/hello-world-server
+    #workdir: Users/sotudeko/Development/docker-image-scan/hello-world-server
+    image_name: hello-world
+  tasks:
+    - name: Buuld and tag docker image
+      command: chdir="{{ workdir }}"  /usr/local/bin/docker build -t "{{ item }}/{{ image_name }}:{{ version }}" .
+      with_items: "{{ docker_registries }}"
+      register: op
+
+    - debug:
+        var: op
+
+    - name: Push image to local registry
+      command: chdir="{{ workdir }}"  /usr/local/bin/docker push "{{ item }}/{{ image_name }}:{{ version }}"
+      with_items: "{{ docker_registries }}"
+      register: op
+
+    - debug:
+        var: op
+

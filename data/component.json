@@ -1,0 +1,10 @@
+{
+"group": "org.test",
+"artifact": "webwolf",
+"version": "1.3",
+"artifact_path": "/Users/sotudeko/Development/scan-artifacts/java/webwolf-8.0.0.M21.jar",
+"extension": "jar",
+"repository":"maven-releases"
+}
+
+
