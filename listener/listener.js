@@ -17,10 +17,11 @@ const server = app.listen(3007, () => console.log('[nxrm3-listener] listening on
 app.post('/', (req, res) => {
     console.log(req.body);
 
-    const ls = spawn('ls', ['-lh', '/usr']);
-    ls.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
+    // const ls = spawn('ls', ['-lh', '/usr']);
+
+    // ls.stdout.on('data', (data) => {
+    //   console.log(`stdout: ${data}`);
+    // });
 
 });
 

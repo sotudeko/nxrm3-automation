@@ -1,8 +1,14 @@
 - hosts: nxrm3_controller
+  vars:
+    username: admin
+    passwd: admin123
+    host: http://localhost
+    port: 8082
+    repository: mvn-releases
   tasks:
-    - name: Upload component to Nexus Repository "{{ repository }}"
-      shell: curl -v -u "{{ item.user }}":"{{ item.passwd }}" \
-             -X POST "{{ item.host }}:{{ item.port }}/service/rest/v1/components?repository={{ repository }}" \
+    - name: Upload maven component to Nexus Repository "{{ repository }}"
+      command: curl -v -u "{{ username }}":"{{ passwd }}" \
+             -X POST "{{ host }}:{{ port }}/service/rest/v1/components?repository={{ repository }}" \
              -F maven2.groupId="{{ group }}" \
              -F maven2.artifactId="{{ artifact }}" \
              -F maven2.version="{{ version }}" \
@@ -11,4 +17,3 @@
              -F maven2.generate-pom=true
       args:
         warn: false
-      loop: "{{ nxrm3_instances }}"

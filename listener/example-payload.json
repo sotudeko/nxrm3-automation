@@ -1,0 +1,13 @@
+
+{ timestamp: '2019-05-26T16:31:42.897+0000',
+    nodeId: '159F2F23-C0F551FE-770F8542-794631A0-38DCE4A0',
+    initiator: 'admin/127.0.0.1',
+    repositoryName: 'mvn-releases',
+    action: 'UPDATED',
+    component:
+     { id: 'd064804a8ed5ad6e5839ebe35616d71e',
+       format: 'maven2',
+       name: 'WebGoat',
+       group: 'WebGoat',
+       version: '1.1.4' }
+}

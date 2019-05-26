@@ -1,0 +1,13 @@
+- hosts: nxrm3_controller
+  vars:
+    docker_registry: sola.local:18088
+    image_name: hello-world
+    version: 1.0
+  tasks:
+    - name: Push image to registry
+      command: /usr/local/bin/docker push "{{ docker_registry }}/{{ image_name }}:{{ version }}"
+      register: op
+
+    - debug:
+        var: op
+
