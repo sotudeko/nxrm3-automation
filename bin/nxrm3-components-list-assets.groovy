@@ -33,13 +33,7 @@ class NXRM3Components {
 
             jsonObject.items.each { 
 
-               switch(it.format){
-                  case 'maven2': printMaven(it); break
-                  case 'npm': printNpm(it); break
-                  case 'nuget': printList(it); break
-                  case 'docker': printDocker(it, dockerRepoConnector); break
-                  default: break
-               }
+               printAssets(it)
 
                numberOfComponents++
             }
