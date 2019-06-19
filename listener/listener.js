@@ -19,9 +19,11 @@ app.post('/', (req, res) => {
     console.log(payload);
 
     if (payload.action === 'CREATED'){
+
       if (payload.component.format === 'docker'){
-        console.log('docker pull sola.local:18087/' + payload.component.name + ':' + payload.component.version)
+        console.log('docker push sola.local:18087/' + payload.component.name + ':' + payload.component.version)
       }
+
       if (payload.component.format === 'maven2'){
         console.log('  <dependency>')
         console.log('    <groupId>' + payload.component.group + '</group>')
