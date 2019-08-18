@@ -34,7 +34,7 @@ class NXRM3Components {
             jsonObject.items.each { 
 
                switch(it.format){
-                  case 'maven2': printMaven(it); break
+                  case 'maven2': printJson(it); break
                   case 'npm': printNpm(it); break
                   case 'nuget': printList(it); break
                   case 'docker': printDocker(it, dockerRepoConnector); break
@@ -80,7 +80,7 @@ class NXRM3Components {
       }
    }
 
-   static def printRaw(it){
+   static def printJson(it){
       def pretty = JsonOutput.toJson(it)
       println pretty
    }
