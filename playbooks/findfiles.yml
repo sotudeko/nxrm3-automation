@@ -1,0 +1,36 @@
+- hosts: nxrm3_controller
+  vars:
+     outfile: /tmp/listfiles.txt
+     searchpath: /var/tmp
+  tasks:
+    - name: init file
+      file:
+        path: "{{ outfile }}"
+        state: absent
+
+    - name: Find files last accessed
+      find: 
+        paths: "{{ searchpath }}"
+        age: 2d
+        recurse: yes
+      register: op
+
+    - name: write examined
+      lineinfile:
+        path: "{{ outfile }}"
+        line: "Examined: {{ op.examined }}"
+        create: yes
+
+    - name: write matched
+      lineinfile:
+        path: "{{ outfile }}"
+        line: "Matched: {{ op.matched }}"
+
+    - name: write filenames
+      lineinfile:
+        path: "{{ outfile }}"
+        line: "{{ item.path }} {{ (item.size/1048576)|round(2,'ceil')}}Mb"
+      loop: "{{ op.files }}"
+      loop_control:
+        loop_var: item
+   

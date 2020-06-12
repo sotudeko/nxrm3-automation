@@ -1,0 +1,31 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.migrate</groupId>
+  <artifactId>repository</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <dependencies>
+<dependency>
+    <groupId>org.demo</groupId>
+    <artifactId>WebGoat</artifactId>
+    <version>1.0</version>
+  </dependency>
+  <dependency>
+    <groupId>org.demo</groupId>
+    <artifactId>WebGoat</artifactId>
+    <version>1.1</version>
+  </dependency>
+  <dependency>
+    <groupId>org.demo</groupId>
+    <artifactId>WebGoat</artifactId>
+    <version>1.3</version>
+  </dependency>
+  <dependency>
+    <groupId>org.demo</groupId>
+    <artifactId>WebGoat</artifactId>
+    <version>2.1</version>
+  </dependency>
+
+
+  </dependencies>
+</project>
+

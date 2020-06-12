@@ -1,13 +1,29 @@
 import groovy.json.JsonSlurper
-import groovy.json.JsonOutput;
+import groovy.json.JsonOutput
+import static groovy.json.JsonOutput.*
+import groovy.cli.picocli.CliBuilder
+
 
 class NXRM3Components {
 
    static void main(String[] args) {
 
-      def dockerRepoConnector    
-      def repositoryUrl = args[0]
-      def repositoryName = args[1]
+      def cli = new CliBuilder()
+
+      cli.url(type: String, 'url-arg')
+      cli.name(type: String, 'name-arg')
+      cli.raw(type: Boolean, 'raw-arg')
+
+      def options = cli.parse(args)
+
+      if (!options) {
+         System.err << 'Error while parsing command-line options.\n'
+         System.exit 1
+      }
+
+      def repositoryUrl = options.url 
+      def repositoryName = options.name
+      def raw = options.raw
 
       def endpoint = repositoryUrl + '/service/rest/v1/components'
       def query = '?repository=' + repositoryName
@@ -15,7 +31,6 @@ class NXRM3Components {
 
       def continueToken = 'start'
       int numberOfComponents = 0
-      println ''
 
       while (continueToken != null){
 
@@ -33,14 +48,13 @@ class NXRM3Components {
 
             jsonObject.items.each { 
 
-               switch(it.format){
-                  case 'maven2': printJson(it); break
-                  case 'npm': printNpm(it); break
-                  case 'nuget': printList(it); break
-                  case 'docker': printDocker(it, dockerRepoConnector); break
-                  default: break
+               if (raw){
+                  printRaw(it)
                }
-
+               else {
+                  printList(it)          
+               }
+               
                numberOfComponents++
             }
 
@@ -51,56 +65,27 @@ class NXRM3Components {
             } 
          }
       }
-      println ''
-      println  repositoryName + ' (' + repositoryUrl + ') - number of components: ' + numberOfComponents
-      println ''
-   }
-
-   static printIds(it){
-
-      def listing
-
-      if (it.format == 'maven2'){
-         listing = it.group + '.' + it.name + ':' + it.version + ' (' + it.id + ')'
-      }
-      else {
-         listing = it.name + ':' + it.version + ' (' + it.id + ')'
-      }
-
-      println listing
-   }
-
-   static printAssets(it){
-      
-      printIds(it)
-
-      println ' - Assets'
-      for (asset in it.assets){
-         println '  -- ' + asset.downloadUrl // + ' (' + asset.id + ')'
+       
+      if (raw){
+         println ''
+         println  repositoryName + ' (' + repositoryUrl + ') - number of components: ' + numberOfComponents
+         println ''
       }
    }
 
-   static def printJson(it){
+   static def printRaw(it){
       def pretty = JsonOutput.toJson(it)
-      println pretty
+      println prettyPrint(pretty)
    }
 
-   static def printMaven(it){
-      println '  <dependency>' 
-      println '    <groupId>' + it.group + '</group>'
-      println '    <artifactId>' + it.name + '</artifactId>'
-      println '    <version>' + it.version + '</version>'
-      println '  </dependency>'
+   static printList(it){
+      for (asset in it.assets){
+         String downloadUrl = asset.downloadUrl
+         if (!downloadUrl.matches(".*(.pom|.md5|.sha1)")){
+            println downloadUrl
+         }
+      }
    }
-
-   static def printNpm(it){
-      println '  "' + it.name + '" : "' + it.version + '"'
-   }
-
-   static def printDocker(it, dockerRepoConnector){
-      println dockerRepoConnector + '/' + it.name + ':' + it.version 
-   }
-
 }
 
 
