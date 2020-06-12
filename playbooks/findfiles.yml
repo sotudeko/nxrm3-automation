@@ -12,7 +12,11 @@
       find: 
         paths: "{{ searchpath }}"
         age: 2d
+        age_stamp: atime
         recurse: yes
+        patterns:
+          - '*.jar'
+          - '*.war'
       register: op
 
     - name: write examined
