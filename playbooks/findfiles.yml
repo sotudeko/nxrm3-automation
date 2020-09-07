@@ -17,6 +17,7 @@
         patterns:
           - '*.jar'
           - '*.war'
+          - '*.csv'
       register: op
 
     - name: write examined
@@ -35,6 +36,4 @@
         path: "{{ outfile }}"
         line: "{{ item.path }} {{ (item.size/1048576)|round(2,'ceil')}}Mb"
       loop: "{{ op.files }}"
-      loop_control:
-        loop_var: item
    

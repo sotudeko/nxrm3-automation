@@ -10,7 +10,11 @@ endPoint='service/rest/v1/components'
 echo "Get Nexus Repository Manager component\n"
 echo
 
-curl -s -u ${username}:${passwd} -X GET ${repoUrl}/${endPoint}/${componentId}
+#curl -v -s -u ${username}:${passwd} -X GET ${repoUrl}/${endPoint}/${componentId}
+
+curl -s -u ${username}:${passwd} -o myfile.war -X GET ${componentId}
+
+
 echo
 
 exit 0

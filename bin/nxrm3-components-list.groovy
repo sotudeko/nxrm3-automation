@@ -12,7 +12,7 @@ class NXRM3Components {
 
       cli.url(type: String, 'url-arg')
       cli.name(type: String, 'name-arg')
-      cli.raw(type: Boolean, 'raw-arg')
+      cli.fmt(type: String, 'fmt-arg')
 
       def options = cli.parse(args)
 
@@ -23,7 +23,7 @@ class NXRM3Components {
 
       def repositoryUrl = options.url 
       def repositoryName = options.name
-      def raw = options.raw
+      def fmt = options.fmt
 
       def endpoint = repositoryUrl + '/service/rest/v1/components'
       def query = '?repository=' + repositoryName
@@ -48,7 +48,7 @@ class NXRM3Components {
 
             jsonObject.items.each { 
 
-               if (raw){
+               if (fmt.equals("all")){
                   printRaw(it)
                }
                else {
@@ -66,7 +66,7 @@ class NXRM3Components {
          }
       }
        
-      if (raw){
+      if (fmt.equals("all")){
          println ''
          println  repositoryName + ' (' + repositoryUrl + ') - number of components: ' + numberOfComponents
          println ''

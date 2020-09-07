@@ -34,7 +34,7 @@ class NXRM3Components {
             jsonObject.items.each { 
 
                switch(it.format){
-                  case 'maven2': printJson(it); break
+                  case 'maven2': printAssets(it); break
                   case 'npm': printNpm(it); break
                   case 'nuget': printList(it); break
                   case 'docker': printDocker(it, dockerRepoConnector); break
@@ -53,6 +53,7 @@ class NXRM3Components {
       }
       println ''
       println  repositoryName + ' (' + repositoryUrl + ') - number of components: ' + numberOfComponents
+
       println ''
    }
 
@@ -76,7 +77,7 @@ class NXRM3Components {
 
       println ' - Assets'
       for (asset in it.assets){
-         println '  -- ' + asset.downloadUrl // + ' (' + asset.id + ')'
+         println '  -- ' + asset.downloadUrl  + ' (' + asset.id + ')'
       }
    }
 

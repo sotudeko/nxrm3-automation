@@ -34,6 +34,8 @@ class NXRM3Components {
             jsonObject.items.each { 
 
                printAssets(it)
+               printIds(it)
+               printRaw(it)
 
                numberOfComponents++
             }
